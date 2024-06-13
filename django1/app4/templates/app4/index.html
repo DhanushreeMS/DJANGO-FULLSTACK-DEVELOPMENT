@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Permutations</title>
+</head>
+<body>
+    <h1>Word Permutations</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="word">Enter a 3, 4, or 5-letter word:</label>
+        <input type="text" id="word" name="word" maxlength="5" required><br><br>
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if permutations_result %}
+        {% for key, perm_list in permutations_result.items %}
+            <h2>{{ key }} Permutations:</h2>
+            <ul>
+                {% for perm in perm_list %}
+                    <li>{{ perm }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
